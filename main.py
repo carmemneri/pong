@@ -25,7 +25,39 @@ def telaInicial():
     screen.blit(play,(300,200))
     screen.blit(options,(300,250))
     screen.blit(credits,(300,300))
+    
+def credits():
+    msg = 'Obrigado Galerinha por Jogar este meu joguinho muito bom, porque eu tenho que ter a autoestima alta'
+    screen.blit(msg,(300,300))
+    
+def game():
+    class rect:
+        width = 0
+        height = 0
+        posy = 0
+        posx = 0
+        
+    player1 = rect()
+    player2 =rect()
+    ball = rect()
+    
+    #movimentacao player1
 
+    key = pygame.key.get_pressed()
+
+    if key[K_w]:
+        player1.posy -= player1.speed
+
+    if key[K_s]:
+        player1.posy += player1.speed
+
+    if player1.posy <= 0:
+        player1.posy = 0
+
+    elif player1.posy + player1['height'] >= screenHeight:
+        player1.posy = screenHeight - player1.height
+    
+    
 pygame.init()
 
 fonteMain = pygame.font.get_default_font()
@@ -56,7 +88,7 @@ while True:
 
     # aprender pra q serve: pygame.display.update()
     pygame.display.flip()
-
+    
 pygame.quit()
 
 
