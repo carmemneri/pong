@@ -1,6 +1,8 @@
 import sys, random, pygame
 from pygame.locals import *
 
+### falta a implementacao de botoes
+
 screenSize = screenWidth, screenHeight = 1000, 600
 
 backgroundcolor = 0,0,0
@@ -17,13 +19,15 @@ def telaInicial():
     screen.blit(credits,(300,300))
     
 def credits():
+    ### colocar algo definitivo
     msg = 'Obrigado Galerinha por Jogar este meu joguinho muito bom, porque eu tenho que ter a autoestima alta'
     screen.blit(msg,(300,300))
 
 def options():
+    ###fazer algo que realmente faca sentido
     key = pygame.key.get_pressed()
     if key[K_c]:
-        backgroundcolor=100.100.100
+        backgroundcolor=100,100,100
 
     
 def game():
@@ -51,9 +55,8 @@ def game():
     'speed': 1
 	}
     
-    #movimentacao player1
 	while True:
-		screen.fill(black)
+		screen.fill(backgroundcolor)
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT: sys.exit()
 		key = pygame.key.get_pressed()
@@ -83,15 +86,21 @@ def game():
 
 		elif player2['posy'] + player2['height'] >= screenHeight:
 			player2['posy'] = screenHeight - player2['height']
+
+        ### a bola nao tem movimento
+        ### o jogo esta sem efeito de colissao. existem duas solucoes para as colissoes, troque o dicionario por um objeto e use o metodo coliderect() do pygame ou implemente o propio sistema de colissoes
+        ### nao tem um placar
+        ### nao tem nenhuma condicao de parada para o jogo
 		
 		#background
-		screen.fill(black)
+		screen.fill(backgroundcolor)
 
 		#player 1
 		pygame.draw.rect(screen,white,(player1['posx'],player1['posy'],player1['width'],player1['height']))
 
 		#player 2
 		pygame.draw.rect(screen,white,(player2['posx'],player2['posy'],player2['width'],player2['height']))
+
 		#ball
 		pygame.draw.rect(screen,white,(ball['posx'],ball['posy'],ball['width'],ball['height']))
 
@@ -102,13 +111,14 @@ def game():
     
 pygame.init()
 
+# aqui fica definida a font usada no jogo
 fonteMain = pygame.font.get_default_font()
 titulo = pygame.font.SysFont(fonteMain,60)
 fonteDefault = pygame.font.SysFont(fonteMain, 45)
 
-screen = pygame.display.set_mode(screenSize)
+screen = pygame.display.set_mode(screenSize) #aqui a gente cria a tela
 
-pygame.display.set_caption("")
+pygame.display.set_caption("") #aqui a gente pode colocar aqle nome de roda teto
 
 while True:
 
@@ -118,6 +128,8 @@ while True:
         if event.type == pygame.QUIT: sys.exit()
 
     key = pygame.key.get_pressed()
+
+    ### pra entrar no game: bug a se resolver. se eu inverter a ordem desses ifs a baixo, o programa n funciona direito
     if(key[K_g]):
 		game()
     if key[K_w] and key[K_LCTRL]:
