@@ -3,7 +3,7 @@ from pygame.locals import *
 
 screenSize = screenWidth, screenHeight = 1000, 600
 
-black = 0,0,0
+backgroundcolor = 0,0,0
 white = 255,255,255
 
 def telaInicial():
@@ -19,6 +19,12 @@ def telaInicial():
 def credits():
     msg = 'Obrigado Galerinha por Jogar este meu joguinho muito bom, porque eu tenho que ter a autoestima alta'
     screen.blit(msg,(300,300))
+
+def options():
+    key = pygame.key.get_pressed()
+    if key[K_c]:
+        backgroundcolor=100.100.100
+
     
 def game():
 	player1 = {
@@ -119,7 +125,7 @@ while True:
 
     #background
     # testar se eu n colocar um background ele vai ficar dando o bug de repeticao
-    screen.fill(black)
+    screen.fill(backgroundcolor)
 
     telaInicial()
 
