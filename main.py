@@ -165,13 +165,15 @@ while True:
         sys.exit()
 
 	#entrando no jogo propiamente dito
-    if key[K_g] or (event.type == pygame.MOUSEBUTTONDOWN and mouse[0]<50):
+    if key[K_g] or (event.type == pygame.MOUSEBUTTONDOWN and mouse[0]>290 and mouse[0]<370 and mouse[1]>190 and mouse[1]<240):
         game()
 		
     if key[K_c]:
     	credits()
 
     #background
+    pygame.draw.rect(screen,white,(240,150,160,150))
+
     screen.fill(backgroundcolor)
 
     telaInicial()
